@@ -8,11 +8,9 @@
 3. Confirm build settings (Netlify reads `netlify.toml`):
    - Build: `npm ci && npm run build -w web`
    - Publish: `web/dist`
-4. **Before or right after first deploy**, choose one:
+4. Netlify build sets **`VITE_API_URL`** to Render in `netlify.toml` (Netlify’s `/api` proxy does not reliably forward **POST**). Trigger a **Deploy** after pulling latest `main`.
 
-   **Option A (simplest):** Do **not** set `VITE_API_URL`. Netlify proxies `/api` and `/socket.io` to Render (see `netlify.toml`). Redeploy after each `netlify.toml` change.
-
-   **Option B:** Set `VITE_API_URL` = `https://incruiter-integrity-api.onrender.com` and redeploy. Render must allow your Netlify URL (latest API allows `*.netlify.app` automatically).
+5. On **Render**, set **`FRONTEND_URL`** = `https://serene-croissant-6d2c12.netlify.app` (optional; API also allows `*.netlify.app`).
 
 ## API backend (required)
 

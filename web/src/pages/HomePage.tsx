@@ -16,14 +16,10 @@ export default function HomePage() {
       const session = await createSession(name);
       navigate(`/reviewer/${session.id}`);
     } catch {
-      const onNetlify =
-        typeof window !== "undefined" && window.location.hostname.endsWith(".netlify.app");
       setError(
-        onNetlify
-          ? "Could not reach the API (CORS or backend). On Netlify: remove VITE_API_URL and redeploy, or redeploy Render after the latest CORS fix."
-          : import.meta.env.PROD
-            ? "Could not reach the API. Check VITE_API_URL and that Render is running."
-            : "Could not create session. Start the server with npm start."
+        import.meta.env.PROD
+          ? "Could not reach the API. Wait for Netlify redeploy (VITE_API_URL → Render) and confirm Render is awake."
+          : "Could not create session. Start the server with npm start."
       );
     } finally {
       setLoading(false);
