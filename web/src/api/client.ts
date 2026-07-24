@@ -104,7 +104,7 @@ export function reportSignal(
     sessionId,
     at: payload.at ?? new Date().toISOString(),
   };
-  if (import.meta.env.VITE_API_URL?.trim()) {
+  if (typeof window !== "undefined" && apiOrigin() !== window.location.origin) {
     void reportSignalHttp(sessionId, payload);
     return;
   }
