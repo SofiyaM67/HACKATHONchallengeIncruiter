@@ -1,0 +1,19 @@
+{
+  "name": "incruiter-integrity",
+  "private": true,
+  "workspaces": [
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "build:web": "npm run build -w web",
+    "build:api": "npm run build -w server",
+    "build": "npm run build:web && npm run build:api",
+    "start": "npm run build && npm run start -w server",
+    "dev": "node scripts/run-dev.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
