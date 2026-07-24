@@ -29,6 +29,20 @@ app.use(express.json());
 const webDist = path.join(__dirname, "../../web/dist");
 app.use(express.static(webDist));
 
+app.get("/", (_req, res) => {
+  res.json({
+    ok: true,
+    service: "incruiter-integrity-api",
+    health: "/health",
+    sessions: "/api/sessions",
+    note: "Use the Netlify frontend URL for the interview UI; this host is API-only.",
+  });
+});
+
+app.get("/health", (_req, res) => {
+  res.json({ ok: true });
+});
+
 app.post("/api/sessions", (req, res) => {
   const candidateName = String(req.body?.candidateName ?? "Candidate").trim() || "Candidate";
   const session = store.create({
