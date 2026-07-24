@@ -46,4 +46,4 @@ See [WRITEUP.md](./WRITEUP.md) for detection approach, coverage, and limits.
 
 ## Deploy (Vercel / Netlify)
 
-Frontend on **Netlify**, API on **Render** (Socket.IO). See **[DEPLOY.md](./DEPLOY.md)**.
+Frontend on **Netlify**, API on **Render** (Socket.IO).
