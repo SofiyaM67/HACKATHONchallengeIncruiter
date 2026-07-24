@@ -8,20 +8,23 @@ import { v4 as uuid } from "uuid";
 import { SessionStore } from "./sessionStore.js";
 import type { IntegritySignal, QuestionPayload, SavedAnswer } from "./types.js";
 import { listenWithFallback } from "./listenWithFallback.js";
-import { resolveCorsOrigins } from "./corsOrigins.js";
+import { resolveCorsOrigins, corsOriginDelegate } from "./corsOrigins.js";
 
 const corsOrigins = resolveCorsOrigins();
+const corsDelegate = corsOriginDelegate(corsOrigins);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const store = new SessionStore();
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
-  cors: { origin: corsOrigins === true ? "*" : corsOrigins },
+  cors: {
+    origin: corsOrigins === true ? "*" : corsDelegate,
+  },
 });
 
 app.use(
   cors({
-    origin: corsOrigins,
+    origin: corsOrigins === true ? true : corsDelegate,
   })
 );
 app.use(express.json());

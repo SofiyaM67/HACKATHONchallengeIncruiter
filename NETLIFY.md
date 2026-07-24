@@ -8,10 +8,11 @@
 3. Confirm build settings (Netlify reads `netlify.toml`):
    - Build: `npm ci && npm run build -w web`
    - Publish: `web/dist`
-4. **Before or right after first deploy**, add an environment variable:
-   - **Site configuration → Environment variables**
-   - `VITE_API_URL` = your Render API URL (see below)
-5. **Trigger deploy** again so Vite picks up `VITE_API_URL`.
+4. **Before or right after first deploy**, choose one:
+
+   **Option A (simplest):** Do **not** set `VITE_API_URL`. Netlify proxies `/api` and `/socket.io` to Render (see `netlify.toml`). Redeploy after each `netlify.toml` change.
+
+   **Option B:** Set `VITE_API_URL` = `https://incruiter-integrity-api.onrender.com` and redeploy. Render must allow your Netlify URL (latest API allows `*.netlify.app` automatically).
 
 ## API backend (required)
 
