@@ -1,7 +1,7 @@
 # InCruiter Integrity Monitor
 
 Zero-install browser prototype for the **Catch the Invisible AI Cheater** hackathon. A mock interview runs entirely in the web session; client-side detectors emit weighted integrity signals, aggregate into a **clean / suspicious / high** risk score, and surface evidence on a reviewer dashboard. Signals are **advisory only** never an automatic rejection.
-Application Link:  [Link](serene-croissant-6d2c12.netlify.app) 
+Application Link:  [serene-croissant-6d2c12.netlify.app](serene-croissant-6d2c12.netlify.app) 
 ## One-command run
 
 ```bash
