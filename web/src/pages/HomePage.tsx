@@ -16,7 +16,11 @@ export default function HomePage() {
       const session = await createSession(name);
       navigate(`/reviewer/${session.id}`);
     } catch {
-      setError("Could not create session. Start the server with npm start.");
+      setError(
+        import.meta.env.PROD
+          ? "Could not reach the API. Redeploy Netlify after setting VITE_API_URL, or wait for the latest deploy with API proxy."
+          : "Could not create session. Start the server with npm start."
+      );
     } finally {
       setLoading(false);
     }
